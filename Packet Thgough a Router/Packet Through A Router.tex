@@ -1,0 +1,101 @@
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{float}
+
+\usepackage[margin=1in]{geometry} % Adjust margins here
+
+% Front Page
+\newcommand{\frontpage}[6]{%
+    \begin{titlepage}
+        \centering
+        \includegraphics[width=0.3\textwidth]{~/Downloads/ju_logo.png}\par\vspace{1cm}
+        \vspace{1cm}
+        {\scshape\Large Department of Computer Science and Engineering\par}
+        \vspace{1.5cm}
+        \vspace{0.5cm}
+        {\Large Experiment Name: #4\par}
+        \vspace{0.5cm}
+        {\Large Experiment No: #5\par}
+        \vspace{0.5cm}
+        {\Large Date: #6\par}
+        \vfill
+        Submitted to:\par
+        Md. Imdadul Islam\par
+        Professor of CSE, Jahangirnagar University\par
+        \vspace{0.5cm}
+        Submitted by:\par
+        Name: #1\par
+        Exam Roll: #2\par
+        Class Roll: #3\par
+        \vspace{1cm}
+        Jahangirnagar University,Savar, Dhaka\par
+        \vfill
+    \end{titlepage}
+}
+
+\title{Packet Through A Router}
+\author{Sudipta Singha}
+\date{\today}
+
+\begin{document}
+
+\frontpage{Sudipta Singha}{202220}{408}{Packet Through A Router}{2}{\today}
+
+
+\section{Objective}
+% Objective: (3 sentences)
+% Write your objective here.
+In this lab report, we explore how data packets travel through a router. We'll study how routers decide where to send packets and how fast they can do it. By doing this, we aim to understand better how routers help computers communicate on networks.
+\section{Network Diagram}
+% Insert your network diagram image here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{~/Pictures/lab2.png}
+    \caption{Network Diagram for the Experiment Packet Through A Router}
+\end{figure}
+
+\section{Procedure}
+% Write your procedure here, including all commands.
+We use Cisco Packet Tracer for implementing this experiment.We take all the pc from the cisco packet device
+pan.We also take the Router from the device pan.The router we use is Router-PT.We connect all the device using
+fastethernet port.We also take 2 switch.Then we assign the ip address and subnet musk for all the computer.We
+assign 2 network ip address for the router.We have to insert ehternet card to the router.To test the
+connection we send ICMP packet from one node to another node.We also used those commands to test the
+connectivity of the network.
+\begin{lstlisting}[language=bash]
+$ ping 192.168.3.3
+$ tracert 192.168.3.3
+\end{lstlisting}
+
+\section{Result}
+% Write your result here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{~/Pictures/lab2result1.png}
+    \caption{The Packet is leaving the source computer}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{~/Pictures/lab2result2.png}
+    \caption{The Packet reached the router}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{~/Pictures/lab2result3.png}
+    \caption{The Packet reached the destination}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{~/Pictures/lab2result4.png}
+    \caption{The Ackowledgement reached the source node}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{~/Pictures/lab2result5.png}
+    \caption{ping and tracert result}
+\end{figure}
+
+\end{document}
+

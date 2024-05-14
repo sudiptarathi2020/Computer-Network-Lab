@@ -1,0 +1,124 @@
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{float}
+
+\usepackage[margin=1in]{geometry} % Adjust margins here
+
+% Front Page
+\newcommand{\frontpage}[6]{%
+    \begin{titlepage}
+        \centering
+        \includegraphics[width=0.3\textwidth]{~/Downloads/ju_logo.png}\par\vspace{1cm}
+        \vspace{1cm}
+        {\scshape\Large Department of Computer Science and Engineering\par}
+        \vspace{1.5cm}
+        \vspace{0.5cm}
+        {\Large Experiment Name: #4\par}
+        \vspace{0.5cm}
+        {\Large Experiment No: #5\par}
+        \vspace{0.5cm}
+        {\Large Date: #6\par}
+        \vfill
+        Submitted to:\par
+        Md. Imdadul Islam\par
+        Professor of CSE, Jahangirnagar University\par
+        \vspace{0.5cm}
+        Submitted by:\par
+        Name: #1\par
+        Exam Roll: #2\par
+        Class Roll: #3\par
+        \vspace{1cm}
+        Jahangirnagar University,Savar, Dhaka\par
+        \vfill
+    \end{titlepage}
+}
+
+\title{IP Telephony}
+\author{Sudipta Singha}
+\date{\today}
+
+\begin{document}
+
+\frontpage{Sudipta Singha}{202220}{408}{IP Telephony}{6}{\today}
+
+
+\section{Objective}
+% Objective: (3 sentences)
+% Write your objective here.
+Objective of this experiment is to implement a small network of IP
+telephony. Each telephone will be verified with its content of IP
+address and corresponding telephone number. Finally, the network
+will be tested by dialing to each other IP phone.
+\section{Network Diagram}
+% Insert your network diagram image here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab6.png}
+    \caption{The network of IP Telephony}
+\end{figure}
+
+\section{Procedure}
+% Write your procedure here, including all commands.
+The project is implemented using Cisco Packet Tracer.The command of the router is written below
+\subsection{Router configuration using cli}
+\begin{lstlisting}[language=bash]
+Router>en
+Router#conf t
+Router(config)#int fa0/0
+Router(config-if)#ip add 192.168.10.1 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#exit
+Router(config)#ip dhcp pool VOICE
+Router(dhcp-config)#network 192.168.10.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.10.1
+Router(dhcp-config)#option 150 ip 192.168.10.1
+Router(dhcp-config)#exit
+Router(config)#telephony-service
+Router(config-telephony)#max-dn 5
+Router(config-telephony)#max-ephone 20
+Router(config-telephony)#ip source-address 192.168.10.1 port 2000
+Router(config-telephony)#auto assign 1 to 5
+Router(config-telephony)#exit
+Router(config)#ephone-dn 1
+Router(config-ephone-dn)#number 54001
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 2
+Router(config-ephone-dn)#number 54002
+Router(config-ephone-dn)#
+Router(config)#ephone-dn 3
+Router(config-ephone-dn)#number 54003
+Router(config-ephone-dn)#exit
+Router(config)#ephone-dn 4
+Router(config)#number 54004
+Router(config-ephone-dn)#exit
+Router(config)#
+\end{lstlisting}
+\subsection{Switch configuration using cli}
+\begin{lstlisting}[language=bash]
+Switch>en
+Switch#conf t
+Switch(config)#int range fa0/1-23
+Switch(config-if-range)#switchport mode access
+Switch(config-if-range)#switchport VOICE vlan 1
+Switch(config-if-range)#exit
+Switch(config)#int fa0/24
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#exit
+Switch(config)#do wr
+\end{lstlisting}
+\section{Result}
+% Write your result here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab6result1.png}
+    \caption{The ip phone is reading dial}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab6result2.png}
+    \caption{The receiver accept the call}
+\end{figure}
+\end{document}
+

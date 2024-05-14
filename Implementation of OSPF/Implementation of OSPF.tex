@@ -1,0 +1,162 @@
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{float}
+
+\usepackage[margin=1in]{geometry} % Adjust margins here
+
+% Front Page
+\newcommand{\frontpage}[6]{%
+    \begin{titlepage}
+        \centering
+        \includegraphics[width=0.3\textwidth]{~/Downloads/ju_logo.png}\par\vspace{1cm}
+        \vspace{1cm}
+        {\scshape\Large Department of Computer Science and Engineering\par}
+        \vspace{1.5cm}
+        \vspace{0.5cm}
+        {\Large Experiment Name: #4\par}
+        \vspace{0.5cm}
+        {\Large Experiment No: #5\par}
+        \vspace{0.5cm}
+        {\Large Date: #6\par}
+        \vfill
+        Submitted to:\par
+        Md. Imdadul Islam\par
+        Professor of CSE, Jahangirnagar University\par
+        \vspace{0.5cm}
+        Submitted by:\par
+        Name: #1\par
+        Exam Roll: #2\par
+        Class Roll: #3\par
+        \vspace{1cm}
+        Jahangirnagar University,Savar, Dhaka\par
+        \vfill
+    \end{titlepage}
+}
+
+\title{Implementation of OSPF}
+\author{Sudipta Singha}
+\date{\today}
+
+\begin{document}
+
+\frontpage{Sudipta Singha}{202220}{408}{Implementation of OSPF}{7}{\today}
+
+
+\section{Objective}
+% Objective: (3 sentences)
+% Write your objective here.
+\section{Network Diagram}
+% Insert your network diagram image here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab7.png}
+    \caption{Network Diagram}
+\end{figure}
+
+\section{Procedure}
+% Write your procedure here, including all commands.
+The network is configured using routers and pcs.The router commands are written below.
+\subsection{Router 1}
+\begin{lstlisting}[language=bash]
+Router>en
+Router#conf t
+Router(config)#int fa 0/0
+Router(config-if)#ip ad 192.168.1.2 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#exit
+Router(config)# int se0/1/0
+Router(config-if)#ip add 192.168.6.1 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#exit
+Router(config)# int se0/1/1
+Router(config-if)#ip add 192.168.8.2 255.255.255.0
+Router(config-if)#clock rate 64000
+Router(config-if)#no shut
+Router(config-if)#exit
+Router(config)#exit
+Router#
+Router#copy running-config startup-config
+Router#
+Router#conf t
+Router(config)#router ospf 1
+Router(config-router)#network 192.168.1.0 0.0.0.255 area 0
+Router(config-router)#network 192.168.6.0 0.0.0.255 area 0
+Router(config-router)#network 192.168.8.0 0.0.0.255 area 0
+Router(config-router)#
+\end{lstlisting}
+\subsection{Router 2}
+\begin{lstlisting}[language=bash]
+Router>en
+Router#conf t
+Router(config)#int fa 0/0
+Router(config-if)#ip add 192.168.2.2 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#exit
+Router(config)#int se0/1/0
+Router(config-if)#ip add 192.168.7.1 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#exit
+Router(config)# int se0/1/1
+Router(config-if)#ip add 192.168.6.2 255.255.255.0
+Router(config-if)#clock rate 64000
+Router(config-if)#no shut
+Router(config-if)#
+Router(config-if)#exit
+Router(config)#exit
+Router#copy running-config startup-config
+Router#conf t
+Router(config)#router ospf 1
+Router(config-router)#network 192.168.2.0 0.0.0.255 area 0
+Router(config-router)#network 192.168.7.0 0.0.0.255 area 0
+Router(config-router)#network 192.168.6.0 0.0.0.255 area 0
+Router(config-router)#
+\end{lstlisting}
+\subsection{Router 3}
+\begin{lstlisting}[language=bash]
+Router>en
+Router#conf t
+Router(config)#int fa 0/0
+Router(config-if)#ip add 192.168.3.2 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#exit
+Router(config)# int se0/1/0
+Router(config-if)#ip add 192.168.7.2 255.255.255.0
+Router(config-if)#clock rate 64000
+Router(config-if)#no shut
+Router(config-if)#exit
+Router(config)# int se0/1/1
+Router(config-if)#ip add 192.168.8.1 255.255.255.0
+Router(config-if)#no shut
+Router(config-if)#exit
+Router(config)#exit
+Router#copy running-config startup-config
+Router#
+Router#conf t
+Router(config)#router ospf 1
+Router(config-router)#network 192.168.3.0 0.0.0.255 area 0
+Router(config-router)#network 192.168.8.0 0.0.0.255 area 0
+Router(config-router)#network 192.168.7.0 0.0.0.255 area 0
+Router(config-router)#
+\end{lstlisting}
+
+\section{Result}
+% Write your result here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab7r1.png}
+    \caption{Sending ICMP packet from the source pc}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab7r2.png}
+    \caption{The ICMP packet reached the destination}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab7r3.png}
+    \caption{Checked using ping command}
+\end{figure}
+\end{document}
+

@@ -1,0 +1,102 @@
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{float}
+
+\usepackage[margin=1in]{geometry} % Adjust margins here
+
+% Front Page
+\newcommand{\frontpage}[6]{%
+    \begin{titlepage}
+        \centering
+        \includegraphics[width=0.3\textwidth]{~/Downloads/ju_logo.png}\par\vspace{1cm}
+        \vspace{1cm}
+        {\scshape\Large Department of Computer Science and Engineering\par}
+        \vspace{1.5cm}
+        \vspace{0.5cm}
+        {\Large Experiment Name: #4\par}
+        \vspace{0.5cm}
+        {\Large Experiment No: #5\par}
+        \vspace{0.5cm}
+        {\Large Date: #6\par}
+        \vfill
+        Submitted to:\par
+        Md. Imdadul Islam\par
+        Professor of CSE, Jahangirnagar University\par
+        \vspace{0.5cm}
+        Submitted by:\par
+        Name: #1\par
+        Exam Roll: #2\par
+        Class Roll: #3\par
+        \vspace{1cm}
+        Jahangirnagar University,Savar, Dhaka\par
+        \vfill
+    \end{titlepage}
+}
+
+\title{Routing Through Hub and Switch and Verification of Some Fundamental command of Network Connections}
+\author{Sudipta Singha}
+\date{\today}
+
+\begin{document}
+
+\frontpage{Sudipta Singha}{202220}{408}{Routing Through Hub and Switch and Verification of Some Fundamental command of Network Connections}{1}{\today}
+
+
+\section{Objective}
+% Objective: (3 sentences)
+% Write your objective here.
+The goal is to see how information moves through a hub and a switch, and to check if basic network commands like ping and traceroute are working. We also want to fix any problems we find by using these commands, and make sure data is sent smoothly between different parts of the network.
+\section{Network Diagram}
+% Insert your network diagram image here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab_1(1).png}
+    \caption{Network Diagram for Routing Through Hub}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab_1(2).png}
+    \caption{Network Diagram for DSL Model in WAN}
+\end{figure}
+
+\section{Procedure}
+% Write your procedure here, including all commands.
+The above network diagram is created using Cisco Packet Tracer software. The computers, switch, and hub are all taken from built-in devices in Cisco Packet Tracer.
+For testing ping and tracert we use those commands
+\begin{lstlisting}[language=bash]
+$ ping www.google.com
+$ traceroute www.google.com
+\end{lstlisting}
+
+\section{Result}
+% Write your result here.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab1result2.png}
+    \caption{The Packet is leaving the source computer}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab1result3.png}
+    \caption{The Packet reached the Server}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/lab1result4.png}
+    \caption{The ackowledgement reached the source pc}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/pingresult.png}
+    \caption{Ping result for ping www.google.com}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{~/Pictures/tracerouteresult.png}
+    \caption{Traceroute result for traceroute www.google.com}
+\end{figure}
+
+\end{document}
